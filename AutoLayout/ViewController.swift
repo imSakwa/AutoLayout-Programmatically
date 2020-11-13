@@ -1,5 +1,5 @@
-//
 //  ViewController.swift
+//
 //  AutoLayout
 //
 //  Created by 창민 on 2020/09/14.
@@ -9,47 +9,59 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let label = UILabel()
-    let abutton = UIButton()
-    let bbutton = UIButton()
+    let title_label = UILabel()
+    let title_leftbtn = UIButton()
+    let title_rightbtn = UIButton()
+    let hugging_label = UILabel()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        label.text = "오토 레이아웃 연습"
-        label.backgroundColor = .yellow
+        config()
+        autoLayout()
+    }
+    
+    func config(){
+        title_label.text = "오토 레이아웃 연습"
+        title_label.textAlignment = .center
+        title_label.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         
-        abutton.setTitle("버튼이다.", for: .normal)
-        abutton.backgroundColor = .gray
+        title_leftbtn.setTitle("왼쪽 버튼", for: .normal)
+        title_leftbtn.contentVerticalAlignment = UIControl.ContentVerticalAlignment.top
+        title_leftbtn.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        title_leftbtn.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         
-        bbutton.setTitle("아아", for: .normal)
-        bbutton.backgroundColor = .blue
+        title_rightbtn.setTitle("오른쪽 버튼", for: .normal)
+        title_rightbtn.contentVerticalAlignment = UIControl.ContentVerticalAlignment.bottom
+        title_rightbtn.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.right
+        title_rightbtn.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         
-        self.view.addSubview(label)
-        self.view.addSubview(abutton)
-        self.view.addSubview(bbutton)
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        label.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        label.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        abutton.translatesAutoresizingMaskIntoConstraints = false
-        abutton.topAnchor.constraint(equalTo: label.bottomAnchor,constant: 50).isActive = true
-        abutton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
-        abutton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        abutton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        bbutton.translatesAutoresizingMaskIntoConstraints = false
-        bbutton.leftAnchor.constraint(equalTo: abutton.rightAnchor,constant: 100).isActive = true
-       // bbutton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -200).isActive = true
-        bbutton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -200).isActive = true
-       // bbutton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 100).isActive = true
-        bbutton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        bbutton.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        self.view.addSubview(title_label)
+        self.view.addSubview(title_leftbtn)
+        self.view.addSubview(title_rightbtn)
     }
 
+    // MARK :- AutoLayout Method
+    func autoLayout(){
+        title_label.translatesAutoresizingMaskIntoConstraints = false
+        title_label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        title_label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        title_label.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        title_label.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        title_leftbtn.translatesAutoresizingMaskIntoConstraints = false
+        title_leftbtn.topAnchor.constraint(equalTo: title_label.bottomAnchor,constant: 50).isActive = true
+        title_leftbtn.rightAnchor.constraint(equalTo: view.centerXAnchor, constant: -20).isActive = true
+        title_leftbtn.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        title_leftbtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        title_rightbtn.translatesAutoresizingMaskIntoConstraints = false
+        title_rightbtn.topAnchor.constraint(equalTo: title_label.bottomAnchor,constant: 50).isActive = true
+        title_rightbtn.leftAnchor.constraint(equalTo: view.centerXAnchor, constant: 20).isActive = true
+        title_rightbtn.widthAnchor.constraint(equalToConstant: 120).isActive = true
+        title_rightbtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
 
 }
 
