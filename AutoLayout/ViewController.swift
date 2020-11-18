@@ -26,6 +26,15 @@ class ViewController: UIViewController {
         return view
     }()
     
+    var secondview: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 16
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -63,6 +72,7 @@ class ViewController: UIViewController {
         self.view.addSubview(hugging_label)
         self.view.addSubview(hugged_label)
         self.view.addSubview(firstview)
+        self.view.addSubview(secondview)
     }
     
     
@@ -108,6 +118,11 @@ class ViewController: UIViewController {
         self.firstview.heightAnchor.constraint(equalToConstant: 100).isActive = true
         self.firstview.topAnchor.constraint(equalTo: hugging_label.bottomAnchor, constant: 50).isActive = true
         self.firstview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        self.secondview.widthAnchor.constraint(equalTo: firstview.widthAnchor, multiplier: 2).isActive = true
+        self.secondview.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        self.secondview.topAnchor.constraint(equalTo: firstview.bottomAnchor, constant: 10).isActive = true
+        self.secondview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
     }
 }
