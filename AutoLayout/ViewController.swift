@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
     
@@ -15,10 +16,13 @@ class ViewController: UIViewController {
     let hugging_label = UILabel()
     let hugged_label = UILabel()
 
+    // 클로저로 뷰를 설정
     var firstview: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
-        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 16
         return view
     }()
     
@@ -58,11 +62,13 @@ class ViewController: UIViewController {
         self.view.addSubview(title_rightbtn)
         self.view.addSubview(hugging_label)
         self.view.addSubview(hugged_label)
+        self.view.addSubview(firstview)
     }
     
     
     // MARK :- AutoLayout Method
     func autoLayout(){
+        
         self.title_label.translatesAutoresizingMaskIntoConstraints = false
         self.title_label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         self.title_label.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
@@ -83,17 +89,51 @@ class ViewController: UIViewController {
         
         self.hugging_label.translatesAutoresizingMaskIntoConstraints = false
         self.hugging_label.topAnchor.constraint(equalTo: title_leftbtn.bottomAnchor, constant: 35).isActive = true
-        //self.hugging_label.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        self.hugging_label.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        self.hugging_label.heightAnchor.constraint(equalToConstant: 100).isActive = true
         self.hugging_label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
         self.hugging_label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        self.hugging_label.setContentHuggingPriority(.defaultLow, for: .vertical)
         
         
         self.hugged_label.translatesAutoresizingMaskIntoConstraints = false
         self.hugged_label.topAnchor.constraint(equalTo: hugging_label.topAnchor).isActive = true
-        //self.hugged_label.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        self.hugged_label.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        self.hugged_label.heightAnchor.constraint(equalToConstant: 100).isActive = true
         self.hugged_label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
         self.hugged_label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-    }
+        self.hugged_label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        
+        self.firstview.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.firstview.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        self.firstview.topAnchor.constraint(equalTo: hugging_label.bottomAnchor, constant: 50).isActive = true
+        self.firstview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
+    }
 }
+
+// preview 사용해서 바로바로 확인
+#if DEBUG
+import SwiftUI
+struct ViewControllerRepresnetable: UIViewControllerRepresentable{
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    }
+    
+    @available(iOS 13.0, *)
+    func makeUIViewController(context: Context) -> some UIViewController {
+        ViewController()
+    }
+}
+
+struct ViewController_Previews: PreviewProvider {
+    static var previews: some View{
+        Group {
+            ViewControllerRepresnetable()
+                .previewDevice("iPhone 12")
+                .previewDisplayName("아이폰12")
+        }
+    }
+}
+#endif
 
