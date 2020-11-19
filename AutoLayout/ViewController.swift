@@ -58,10 +58,10 @@ class ViewController: UIViewController {
         self.title_rightbtn.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.right
         self.title_rightbtn.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         
-        self.hugging_label.text = "허깅하는 허깅하는 허깅하는 허깅하는"
+        self.hugging_label.text = "허깅하는 허깅하는"
         self.hugging_label.backgroundColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
         
-        self.hugged_label.text = "허깅당하는 허깅당하는 허깅당하는 허깅당하는 "
+        self.hugged_label.text = "허깅당하는 허깅당하는"
         self.hugged_label.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 1, alpha: 1)
     }
 
@@ -99,20 +99,22 @@ class ViewController: UIViewController {
         
         self.hugging_label.translatesAutoresizingMaskIntoConstraints = false
         self.hugging_label.topAnchor.constraint(equalTo: title_leftbtn.bottomAnchor, constant: 35).isActive = true
-        self.hugging_label.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        self.hugging_label.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        self.hugging_label.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        self.hugging_label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        self.hugging_label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        self.hugging_label.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.hugging_label.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.hugging_label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        self.hugging_label.trailingAnchor.constraint(equalTo: hugged_label.leadingAnchor, constant: -50).isActive = true
+        self.hugging_label.setContentHuggingPriority(UILayoutPriority(rawValue: 100), for: .horizontal)
+        //self.hugging_label.setContentHuggingPriority(.defaultLow, for: .vertical)
         
         
         self.hugged_label.translatesAutoresizingMaskIntoConstraints = false
         self.hugged_label.topAnchor.constraint(equalTo: hugging_label.topAnchor).isActive = true
-        self.hugged_label.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        self.hugged_label.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        self.hugged_label.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20).isActive = true
-        self.hugged_label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        self.hugged_label.setContentHuggingPriority(.defaultLow, for: .vertical)
+        self.hugged_label.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.hugged_label.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.hugged_label.leadingAnchor.constraint(equalTo: hugging_label.trailingAnchor, constant: -100).isActive = true
+        self.hugged_label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        self.hugged_label.setContentHuggingPriority(UILayoutPriority(rawValue: 10), for: .horizontal)
+        //self.hugged_label.setContentHuggingPriority(.defaultLow, for: .vertical)
         
         self.firstview.widthAnchor.constraint(equalToConstant: 100).isActive = true
         self.firstview.heightAnchor.constraint(equalToConstant: 100).isActive = true
