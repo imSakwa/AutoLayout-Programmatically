@@ -7,17 +7,22 @@
 ```swift
 // 상단 제약
 view.topAnchor.constaint(equalTo: 기준이 되는 뷰, constant: 값).isActive = true 
+
 // 왼쪽 제약
 view.leftAnchor.constraint(...)
 view.leadingAnchor.constaint(...)
+
 // 오른쪽 제약
 view.rightAnchor.constraint(...)
 view.trailing.constraint(...)
+
 // 하단 제약
 view.bottomAnchor.constraint(...)
+
 // 너비 제약 
 // equalToConstant로 값만 줄 수 있음
 view.widthAnchor.constraint(equalToConstant: 값)
+
 // 높이 제약
 view.heightAnchor.constraint(equalToConstant: 값)
 ```
