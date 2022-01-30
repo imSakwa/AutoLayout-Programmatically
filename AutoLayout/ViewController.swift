@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 import SwiftUI
 
 class ViewController: UIViewController {
@@ -17,6 +19,11 @@ class ViewController: UIViewController {
     let hugging_label2 = UILabel()
     let compression_label1 = UILabel()
     let compression_label2 = UILabel()
+    
+    let nextButton = UIButton(type: .system).then {
+        $0.backgroundColor = .brown
+        $0.addTarget(self, action: #selector(goNextView), for: .touchUpInside)
+    }
 
     // 클로저로 뷰를 설정
     var firstview: UIView = {
@@ -151,7 +158,18 @@ class ViewController: UIViewController {
         self.secondview.heightAnchor.constraint(equalToConstant: 100).isActive = true
         self.secondview.topAnchor.constraint(equalTo: firstview.bottomAnchor, constant: 10).isActive = true
         self.secondview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        self.view.addSubview(nextButton)
+        nextButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(50)
+            $0.centerX.equalToSuperview()
+        }
 
+    }
+    
+    @objc func goNextView() {
+        let nextView = SnapKitView()
+        self.present(nextView, animated: true)
     }
 }
 
@@ -173,8 +191,8 @@ struct ViewController_Previews: PreviewProvider {
     static var previews: some View{
         Group {
             ViewControllerRepresnetable()
-                .previewDevice("iPhone 12")
-                .previewDisplayName("아이폰12")
+                .previewDevice("iPhone 13")
+                .previewDisplayName("아이폰13")
         }
     }
 }
