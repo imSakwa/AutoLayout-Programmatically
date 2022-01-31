@@ -169,6 +169,7 @@ class ViewController: UIViewController {
     
     @objc func goNextView() {
         let nextView = SnapKitView()
+        
         self.present(nextView, animated: true)
     }
 }

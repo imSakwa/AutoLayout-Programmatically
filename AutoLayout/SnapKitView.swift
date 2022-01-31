@@ -109,7 +109,7 @@ class SnapKitView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
         setLayout()
         self.navigationController?.title = "SnapKit AutoLayout"
         
