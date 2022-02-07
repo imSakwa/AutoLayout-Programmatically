@@ -49,6 +49,21 @@ class SnapKitView: UIViewController {
         $0.backgroundColor = .darkGray
     }
     
+    let datePickerView = UIDatePicker().then {
+        // default 값은 .compact
+        $0.preferredDatePickerStyle = .automatic
+        $0.datePickerMode = .date
+        $0.locale = Locale(identifier: "ko-KR")
+        $0.timeZone = .autoupdatingCurrent
+    }
+    
+    let switchBtn = UISwitch().then {
+        $0.isOn = false
+        $0.addTarget(self, action: #selector(clickSwitch), for: .valueChanged)
+    }
+    
+
+    
     private func setLayout() {
         self.view.addSubview(bigView)
         bigView.snp.makeConstraints {
@@ -104,6 +119,21 @@ class SnapKitView: UIViewController {
             $0.width.equalTo(100)
             $0.height.equalTo(thisView.snp.height)
         }
+        
+        self.view.addSubview(datePickerView)
+        datePickerView.snp.makeConstraints {
+            $0.top.equalTo(thisView.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview().offset(-20)
+            $0.height.equalTo(30)
+        }
+        
+        switchBtn.addTarget(self, action: #selector(clickSwitch), for: .valueChanged)
+        self.view.addSubview(switchBtn)
+        switchBtn.snp.makeConstraints {
+            $0.leading.equalTo(datePickerView.snp.trailing).offset(10)
+            $0.height.equalTo(10)
+            $0.top.equalTo(datePickerView.snp.top)
+        }
 
     }
     
@@ -113,6 +143,16 @@ class SnapKitView: UIViewController {
         setLayout()
         self.navigationController?.title = "SnapKit AutoLayout"
         
+    }
+    
+    @objc func clickSwitch(_ sender: UISwitch) {
+        print("clickSwitch")
+        
+        if sender.isOn && datePickerView.datePickerMode == .date {
+            datePickerView.datePickerMode = .time
+        } else if !sender.isOn && datePickerView.datePickerMode == .time{
+            datePickerView.datePickerMode = .date
+        }
     }
 }
 
