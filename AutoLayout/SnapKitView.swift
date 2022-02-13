@@ -62,6 +62,16 @@ class SnapKitView: UIViewController {
         $0.addTarget(self, action: #selector(clickSwitch), for: .valueChanged)
     }
     
+    let leftLbl = UILabel().then {
+        $0.text = "왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽왼쪽"
+        $0.backgroundColor = .red
+    }
+    
+    let rightLbl = UILabel().then {
+        $0.text = "오른쪽"
+        $0.backgroundColor = .blue
+    }
+    
 
     
     private func setLayout() {
@@ -134,6 +144,21 @@ class SnapKitView: UIViewController {
             $0.height.equalTo(10)
             $0.top.equalTo(datePickerView.snp.top)
         }
+        
+        
+        self.view.addSubview(leftLbl)
+        self.view.addSubview(rightLbl)
+        
+        leftLbl.snp.makeConstraints {
+            $0.top.equalTo(switchBtn.snp.bottom).offset(50)
+            $0.leading.equalToSuperview().inset(10)
+            $0.trailing.equalTo(rightLbl.snp.leading)
+        }
+        
+        rightLbl.snp.makeConstraints {
+            $0.top.equalTo(leftLbl)
+            $0.trailing.equalToSuperview().inset(10)
+        }
 
     }
     
@@ -142,6 +167,8 @@ class SnapKitView: UIViewController {
         self.view.backgroundColor = .white
         setLayout()
         self.navigationController?.title = "SnapKit AutoLayout"
+        
+//        leftLbl.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
     }
     
